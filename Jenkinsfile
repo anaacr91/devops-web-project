@@ -1,5 +1,4 @@
 pipeline {
-
     agent {
         node {
             label 'dockerhost-build-server'
@@ -7,11 +6,10 @@ pipeline {
     }
 
     tools {
-        apache-maven 'maven-3.9.6'
+        maven 'maven-3.9.6'
     }
 
     stages {
-
         stage('Packaging') {
             steps {
                 echo 'Packaging..'
@@ -44,6 +42,5 @@ pipeline {
                 sh 'docker run -d --name devops-web-project-server --label devops-web-project-server -p 8081:8080 ana91acr/devops-web-project:v1'
             }
         }
-
     }
 }
